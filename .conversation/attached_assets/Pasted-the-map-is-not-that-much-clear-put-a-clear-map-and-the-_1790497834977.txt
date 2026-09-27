@@ -1,0 +1,31 @@
+the map is not that much clear put a clear map and the open task box must be colourful catchy  and in stuff add photos of the stuff and colors to move box and sell and everything make it more eye catchy put some emojis in boxes also make it colourful add heavy medium and light boxes options and mark packing loaded and sealed clearly coz on the top its showing wrongly when i mark parking it shows empty in top of that box rectify it and add colours to it catchy in tasks add three colours priority medium priority and least priority colours and make it more catchy and and survival kit make more catchy all the sentence make more amazing and all and put logout option also and overall rectify all this give me a perfect and add ai scan session where ai gives suggestion for the room and prioritize with the information from the app and and make some layout and all which would be useful for the user ai scanner should create layout using gemini api 
+in ai chatbox it should ask like this 👋 Hi Alex! I am your MoveSmart assistant. Your move to Highland Ave is in 6 days (12.4 miles). I'm keeping track of your 8 inventory items, 4 packed boxes, and key access warnings (4th floor, no elevator). What would you like to check today? and ask me question down there and in  survival day kit add categories like tech cable clothes and documents and in box add some clours and emojis to separate all boxs and heavy and that all menmtion and in stuff add marketplace description if they opt for sell
+and in route and map add if there is elevator or not if any problem arise give solution to it and ask the user it is furnished and semi furnished or unfurnished and if there is any duplicate furniture mention that also add one more feature move in and settle in New Home Arrival & Settle-In
+Document pre-existing damage, secure your deposit, and set up your new space
+
+
+Log Inspection Photo
+Protect Your Security Deposit
+Landlords cannot deduct for scratches, marks, or stains that were recorded with timestamped photos upon move-in. Log any scuffs or appliance conditions now before boxes cover them.
+
+Day 1 Settle-In Checklist
+Photograph all rooms before unpacking (protect security deposit)
+Test all door deadbolts and windows locks
+Set up Wi-Fi router & test speeds in study area
+Locate main water shut-off valve & circuit breaker box
+Test stove burners, oven, and refrigerator cooling temperature
+Submit USPS mail forwarding & update bank billing address
+Move-In Condition Log (2 recorded)
++ Add Record
+Hardwood floor near south window
+Pre-existing Damage
+Hardwood floor near south window
+2-inch surface scratch and light water mark from previous tenant potted plant.
+
+Room: Living Room
+2026-09-24 14:15
+Provided Refrigerator & Freezer
+Good
+Clean shelves, cooling down to 37°F as expected.
+
+Room: Kitchen like this develop 

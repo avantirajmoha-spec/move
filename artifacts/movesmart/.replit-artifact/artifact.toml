@@ -1,0 +1,24 @@
+kind = "mobile"
+previewPath = "/"
+title = "MoveSmart"
+description = "A mobile moving operating system that helps people plan, pack, navigate, and settle into a new home with clear next steps, visual organization, and helpful AI guidance."
+version = "1.0.0"
+id = "artifacts/movesmart"
+router = "expo-domain"
+
+[[services]]
+name = "expo"
+ensurePreviewReachable = "/status"
+paths = [ "/" ]
+localPort = 25767
+
+[services.development]
+run = "pnpm --filter @workspace/movesmart run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/movesmart", "run", "build" ]
+run = [ "pnpm", "--filter", "@workspace/movesmart", "run", "serve" ]
+
+[services.env]
+PORT = "25767"
+BASE_PATH = "/"

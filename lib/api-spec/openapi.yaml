@@ -1,0 +1,124 @@
+openapi: 3.1.0
+info:
+  # Do not change the title, if the title changes, the import paths will be broken
+  title: Api
+  version: 0.1.0
+  description: API specification
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: gemini
+    description: AI-assisted room planning and move guidance
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      description: Returns server health status
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+  /gemini/room-scan:
+    post:
+      operationId: scanRoom
+      tags: [gemini]
+      summary: Generate a room layout and unpack plan
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/RoomScanRequest"
+      responses:
+        "200":
+          description: AI room plan
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RoomScanResponse"
+  /gemini/chat:
+    post:
+      operationId: askMoveSmart
+      tags: [gemini]
+      summary: Ask the MoveSmart assistant
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MoveSmartChatRequest"
+      responses:
+        "200":
+          description: Assistant reply
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MoveSmartChatResponse"
+components:
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+    RoomScanRequest:
+      type: object
+      properties:
+        room: { type: string }
+        homeType: { type: string }
+        items:
+          type: array
+          items: { type: string }
+        imageBase64: { type: string }
+        mimeType: { type: string }
+      required: [room, homeType, items]
+    RoomScanResponse:
+      type: object
+      properties:
+        summary: { type: string }
+        zones:
+          type: array
+          items:
+            type: object
+            properties:
+              name: { type: string }
+              items: { type: array, items: { type: string } }
+              tip: { type: string }
+            required: [name, items, tip]
+        layout:
+          type: array
+          items:
+            type: object
+            properties:
+              label: { type: string }
+              x: { type: number }
+              y: { type: number }
+              width: { type: number }
+              height: { type: number }
+            required: [label, x, y, width, height]
+        nextSteps:
+          type: array
+          items: { type: string }
+      required: [summary, zones, layout, nextSteps]
+    MoveSmartChatRequest:
+      type: object
+      properties:
+        message: { type: string }
+        context: { type: object, additionalProperties: true }
+      required: [message, context]
+    MoveSmartChatResponse:
+      type: object
+      properties:
+        reply: { type: string }
+      required: [reply]
+
