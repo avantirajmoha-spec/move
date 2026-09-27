@@ -45,6 +45,7 @@ export interface ConditionLog {
   type: 'damage' | 'appliance';
   status: string;
   timestamp: string;
+  photoUri?: string;
 }
 
 interface MoveState {
