@@ -1,7 +1,7 @@
 import * as ImagePicker from 'expo-image-picker';
 import { Ionicons } from '@expo/vector-icons';
 import React, { useState } from 'react';
-import { Modal, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Image, Modal, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { Card, Chip, Header, IconButton, PrimaryButton, Screen, SectionHeader } from '@/components/MoveUI';
 import { InventoryItem, ItemAction, useMove } from '@/context/MoveContext';
 import { useColors } from '@/hooks/useColors';
@@ -46,7 +46,7 @@ export default function StuffScreen() {
 function InventoryCard({ item, onAction }: { item: InventoryItem; onAction: (action: ItemAction) => void }) {
   const colors = useColors();
   const current = actions.find((action) => action.key === item.action) ?? actions[0];
-  return <Card color={item.color}><View style={styles.itemTop}>{item.photoUri ? <View style={styles.photoThumb}><Text style={{ color: colors.mutedForeground }}>IMG</Text></View> : <View style={[styles.itemIcon, { backgroundColor: item.color }]}><Ionicons name={item.icon as never} size={23} color={colors.foreground} /></View>}<View style={{ flex: 1 }}><Text style={[styles.itemName, { color: colors.foreground }]}>{item.name}</Text><Text style={[styles.itemRoom, { color: colors.mutedForeground }]}>{item.room}</Text></View><View style={[styles.actionPill, { backgroundColor: colors[current.colorKey] }]}><Ionicons name={current.icon} size={14} color={colors.foreground} /><Text style={[styles.actionPillText, { color: colors.foreground }]}>{current.label}</Text></View></View>{item.action === 'sell' ? <Text style={[styles.saleCopy, { color: colors.inkSoft }]}>{item.saleDescription ?? 'Add a marketplace description so this item is ready to list.'}</Text> : null}<View style={styles.actionRow}>{actions.map((action) => <Pressable key={action.key} onPress={() => onAction(action.key)} style={[styles.smallAction, { backgroundColor: item.action === action.key ? colors[action.colorKey] : colors.muted }]}><Ionicons name={action.icon} size={14} color={colors.foreground} /><Text style={[styles.smallActionText, { color: colors.foreground }]}>{action.label}</Text></Pressable>)}</View></Card>;
+  return <Card color={item.color}><View style={styles.itemTop}>{item.photoUri ? <Image source={{ uri: item.photoUri }} style={styles.photoThumb} /> : <View style={[styles.itemIcon, { backgroundColor: item.color }]}><Ionicons name={item.icon as never} size={23} color={colors.foreground} /></View>}<View style={{ flex: 1 }}><Text style={[styles.itemName, { color: colors.foreground }]}>{item.name}</Text><Text style={[styles.itemRoom, { color: colors.mutedForeground }]}>{item.room}</Text></View><View style={[styles.actionPill, { backgroundColor: colors[current.colorKey] }]}><Ionicons name={current.icon} size={14} color={colors.foreground} /><Text style={[styles.actionPillText, { color: colors.foreground }]}>{current.label}</Text></View></View>{item.action === 'sell' ? <Text style={[styles.saleCopy, { color: colors.inkSoft }]}>{item.saleDescription ?? 'Add a marketplace description so this item is ready to list.'}</Text> : null}<View style={styles.actionRow}>{actions.map((action) => <Pressable key={action.key} onPress={() => onAction(action.key)} style={[styles.smallAction, { backgroundColor: item.action === action.key ? colors[action.colorKey] : colors.muted }]}><Ionicons name={action.icon} size={14} color={colors.foreground} /><Text style={[styles.smallActionText, { color: colors.foreground }]}>{action.label}</Text></Pressable>)}</View></Card>;
 }
 
 const styles = StyleSheet.create({
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   filterRow: { flexDirection: 'row', flexWrap: 'wrap', rowGap: 8 },
   itemTop: { flexDirection: 'row', alignItems: 'center', gap: 11 },
   itemIcon: { width: 45, height: 45, borderRadius: 15, alignItems: 'center', justifyContent: 'center' },
-  photoThumb: { width: 45, height: 45, borderRadius: 15, alignItems: 'center', justifyContent: 'center', backgroundColor: '#ECE8E2' },
+  photoThumb: { width: 45, height: 45, borderRadius: 15, backgroundColor: '#ECE8E2' },
   itemName: { fontSize: 15, fontWeight: '800', marginBottom: 4 },
   itemRoom: { fontSize: 12 },
   actionPill: { borderRadius: 10, paddingHorizontal: 8, paddingVertical: 6, flexDirection: 'row', alignItems: 'center', gap: 4 },
