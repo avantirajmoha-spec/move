@@ -1,6 +1,6 @@
-# [Project name]
+# MoveSmart
 
-_Replace the heading above with the project's name, and this line with one sentence describing what this app does for users._
+MoveSmart is a mobile moving companion that turns planning, packing, delivery access, and move-in protection into clear next steps.
 
 ## Run & Operate
 
@@ -22,23 +22,44 @@ _Replace the heading above with the project's name, and this line with one sente
 
 ## Where things live
 
-_Populate as you build — short repo map plus pointers to the source-of-truth file for DB schema, API contracts, theme files, etc._
+- `artifacts/movesmart/app/(tabs)/index.tsx` — move overview, route snapshot, survival kit, and AI entry points
+- `artifacts/movesmart/app/(tabs)/stuff.tsx` — inventory decisions, photos, and sell descriptions
+- `artifacts/movesmart/app/(tabs)/boxes.tsx` — box weight guidance and Packing → Loaded → Sealed progression
+- `artifacts/movesmart/app/(tabs)/tasks.tsx` — color-coded priority tasks and snooze/complete actions
+- `artifacts/movesmart/app/(tabs)/settle.tsx` — move-in checklist, inspection photos, and condition log
+- `artifacts/movesmart/app/scan.tsx` and `app/chat.tsx` — Gemini room planning and context-aware assistant
+- `artifacts/movesmart/context/MoveContext.tsx` — AsyncStorage-backed local move state
+- `artifacts/api-server/src/routes/gemini.ts` — Gemini room scan and assistant endpoints
+- `lib/api-spec/openapi.yaml` — source-of-truth API contract for AI endpoints
 
 ## Architecture decisions
 
-_Populate as you build — non-obvious choices a reader couldn't infer from the code (3-5 bullets)._
+- The first release is local-first: move state persists with AsyncStorage so the core app works without an account or database.
+- Native Expo capabilities are used for inventory photos and move-in inspection photos.
+- AI calls run through the shared Express API server so the Gemini key never ships to the mobile bundle.
+- Box status is derived from each box record and updated independently, preventing the summary count from drifting from the visible state.
 
 ## Product
 
-_Describe the high-level user-facing capabilities of this app once they exist._
+- Active move snapshot with next-step guidance and a clear route/access map
+- Inventory workflows for move, sell, donate, and later decisions
+- Color-coded boxes with light, medium, and heavy weight guidance
+- Packing, loading, and sealing status progression
+- High, medium, and low priority tasks
+- First-night survival kit categories for tech, clothes, documents, and care
+- Gemini-powered room scan/layout suggestions and a context-aware assistant
+- Furnishing mode, elevator access, duplicate furniture guidance, and move-in condition logging
 
 ## User preferences
 
-_Populate as you build — explicit user instructions worth remembering across sessions._
+ - Keep the interface colorful, friendly, and useful on a phone.
+ - Make important statuses visually explicit rather than relying on dense text.
 
 ## Gotchas
 
-_Populate as you build — sharp edges, "always run X before Y" rules._
+- `GEMINI_API_KEY` is a Replit Secret used only by the API server for AI features.
+- Expo camera/gallery features require permission on a physical device; the app shows a clear error when access is denied.
+- Run `pnpm run typecheck` after changes to shared API types or the mobile screens.
 
 ## Pointers
 
